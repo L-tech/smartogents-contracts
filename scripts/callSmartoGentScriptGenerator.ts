@@ -28,7 +28,7 @@ async function main() {
   const message = await getUserInput()
 
   // Call the startChat function
-  const transactionResponse = await contract.startChat(message)
+  const transactionResponse = await contract.initiateScripGenerator(message)
   const receipt = await transactionResponse.wait()
   console.log(`Message sent, tx hash: ${receipt.hash}`)
   console.log(`Chat started with message: "${message}"`)
