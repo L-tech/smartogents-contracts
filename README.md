@@ -6,7 +6,7 @@ Smartogents is an AI-powered tool designed to enhance the understanding, testing
 
 
 ## Link to Project URL
-[arome.dev.co](https://arome.dev.co)
+[Link to App](https://smartogents-contracts-yoeq.vercel.app)
 
 ## Link to AI Generated NFTs for Uploading Contract to Registry
 [https://explorer.galadriel.com/token/0x032666197A5d9329e717800FC90E8C951bA12290](https://explorer.galadriel.com/token/0x032666197A5d9329e717800FC90E8C951bA12290)
