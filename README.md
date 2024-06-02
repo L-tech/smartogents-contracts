@@ -4,6 +4,19 @@
 
 Smartogents is an AI-powered tool designed to enhance the understanding, testing, and simulation of smart contracts on the Galadriel Devnet. By combining AI agents with smart contract analysis, Smartogents provides a comprehensive suite of features to assist developers and users in interacting with smart contracts.
 
+
+## Link to Project URL
+[arome.dev.co](https://arome.dev.co)
+
+## Link to AI Generated NFTs for Uploading Contract to Registry
+[https://explorer.galadriel.com/token/0x032666197A5d9329e717800FC90E8C951bA12290](https://explorer.galadriel.com/token/0x032666197A5d9329e717800FC90E8C951bA12290)
+
+---
+
+You can copy this directly into your README file to maintain the formatting and link functionality.
+
+
+
 ## Key Features
 
 - **User-Friendly Contract ABI Upload and IPFS Storage**: Easily upload your contract ABI and store it on IPFS.

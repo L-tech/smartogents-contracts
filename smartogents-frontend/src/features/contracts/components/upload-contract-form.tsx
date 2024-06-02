@@ -1,6 +1,7 @@
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
+import { useState } from "react";
 
 import { Button } from "@/components/ui/button";
 import {
@@ -31,7 +32,7 @@ const formSchema = z.object({
     message: "Contract address required",
   }),
   ipfsHash: z.string().min(2, {
-    message: "ipfsHash  required",
+    message: "ipfsHash required",
   }),
 });
 
@@ -69,6 +70,8 @@ export const UploadContractForm = () => {
   const address = useAddress();
   const connectWithMetamask = useMetamask();
 
+  const [chatId, setChatId] = useState<number | null>(null);
+
   const getChatId = (receipt: any, iface: ethers.utils.Interface) => {
     let chatId;
     for (const log of receipt.logs) {
@@ -91,13 +94,20 @@ export const UploadContractForm = () => {
       await connectWithMetamask();
     }
     await registerABI({
-      args: [values.contractName, values.contractABIAddress, values.ipfsHash],
+      args: [values.contractName, values.ipfsHash, values.contractABIAddress],
     }).then(async (res) => {
       console.log("ABI Registered:", res);
-      const mintResponse = await mintNFT({
+      await mintNFT({
         args: ["A image of a contract abi and web 3 technologies"],
+      }).then((res: any) => {
+        console.log("Transaction receipt logs:", res.receipt.logs);
+        const receipt = res.receipt;
+        const iface = new ethers.utils.Interface(MintingABI);
+        const chatId = getChatId(receipt, iface);
+        console.log("Generated chat ID:", chatId);
+        console.log("NFT Minted:", chatId);
+        setChatId(chatId);
       });
-      console.log("NFT Minted:", mintResponse);
     });
   };
 
@@ -106,7 +116,7 @@ export const UploadContractForm = () => {
       <h1 className="head_text text-left">
         <span className="orange_gradient bg-clip">Upload Contract</span>
       </h1>
-      <p className="desc  text-left max-w-md">Upload your contract here! </p>
+      <p className="desc  text-left max-w-md">Upload your contract here!</p>
 
       <Form {...form}>
         <form
@@ -164,6 +174,22 @@ export const UploadContractForm = () => {
           </Button>
         </form>
       </Form>
+
+      {chatId !== null && (
+        <div className="mt-10 w-full max-w-2xl flex flex-col gap-7">
+          <h2 className="text-green-500">
+            Congratulations! You've minted SmartoGentNFT Number - {chatId}
+          </h2>
+          <a
+            href={`https://explorer.galadriel.com/token/${mintingContractAddress}`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-blue-500"
+          >
+            Link to NFT Contract
+          </a>
+        </div>
+      )}
     </section>
   );
 };
