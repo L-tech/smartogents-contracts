@@ -13,8 +13,6 @@ Smartogents is an AI-powered tool designed to enhance the understanding, testing
 
 ---
 
-You can copy this directly into your README file to maintain the formatting and link functionality.
-
 
 
 ## Key Features
